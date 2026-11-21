@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VICE NOIR — Midnight Cover Lab</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="panel controls" aria-label="Cover controls">
+    <header class="brand">
+      <p class="brand-kicker">Midnight Cover Lab</p>
+      <h1>VICE <span>NOIR</span></h1>
+      <p class="brand-sub">Turn any photo into a neon-noir GTA-style cover. Photos never leave your machine.</p>
+    </header>
+
+    <fieldset class="group">
+      <legend>1 · Photos</legend>
+      <div class="photo-slots">
+        <label class="slot">Photo A
+          <input id="photo-a" type="file" accept="image/*">
+          <span class="slot-name" id="name-a">sample: boulevard</span>
+        </label>
+        <label class="slot">Photo B
+          <input id="photo-b" type="file" accept="image/*">
+          <span class="slot-name" id="name-b">sample: pier</span>
+        </label>
+        <label class="slot">Photo C
+          <input id="photo-c" type="file" accept="image/*">
+          <span class="slot-name" id="name-c">sample: boulevard</span>
+        </label>
+      </div>
+      <button id="samples" type="button" class="ghost">Load the sample photos</button>
+      <p class="hint">Click a panel in the preview to select it, then drag it to reposition and scroll to zoom. Or use the sliders below.</p>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend>2 · Layout</legend>
+      <div class="choices" id="layouts" role="group" aria-label="Layout">
+        <button type="button" data-layout="diagonal" class="choice active">Diagonal Cut</button>
+        <button type="button" data-layout="strip" class="choice">Comic Strip</button>
+        <button type="button" data-layout="hero-duo" class="choice">Hero + Duo</button>
+        <button type="button" data-layout="bleed" class="choice">Full Bleed</button>
+      </div>
+      <div class="panel-assign" id="panel-assign"></div>
+      <label class="row">Panel zoom
+        <input id="zoom" type="range" min="1" max="2.6" step="0.01" value="1.15">
+      </label>
+      <label class="row">Shift left / right
+        <input id="shift-x" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <label class="row">Shift up / down
+        <input id="shift-y" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <button id="reset-crop" type="button" class="ghost">Reset framing of this panel</button>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend>3 · Grade &amp; words</legend>
+      <div class="choices" id="grades" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="neon" class="choice active">Neon Noir</button>
+        <button type="button" data-grade="violet" class="choice">Vice Violet</button>
+        <button type="button" data-grade="teal" class="choice">Midnight Teal</button>
+        <button type="button" data-grade="ink" class="choice">Mono Ink</button>
+      </div>
+      <label class="row">Title
+        <input id="title" type="text" maxlength="24" value="MIDNIGHT RUN">
+      </label>
+      <label class="row">Subtitle
+        <input id="subtitle" type="text" maxlength="40" value="one last score after dark">
+      </label>
+      <label class="row">Tag
+        <input id="tag" type="text" maxlength="30" value="VICE CITY · 2 AM">
+      </label>
+      <label class="row">Heat
+        <input id="heat" type="range" min="1" max="5" step="1" value="4">
+        <span id="heat-stars" aria-hidden="true">★★★★☆</span>
+      </label>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend>4 · Export PNG</legend>
+      <div class="exports">
+        <button id="export-square" type="button">Square · 1080 × 1080</button>
+        <button id="export-story" type="button">Story · 1080 × 1350</button>
+        <button id="export-wide" type="button">Wide · 1920 × 1080</button>
+      </div>
+      <p id="status" role="status"></p>
+    </fieldset>
+  </section>
+
+  <section class="stage" aria-label="Cover preview">
+    <div class="canvas-wrap">
+      <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+      <p class="stage-caption">Live preview — click a panel to select it, drag to move the photo.</p>
+    </div>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
